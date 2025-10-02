@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Cours 2024</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #22408F; 
+            --secondary-color: #8aabff;
+            --accent-color: #DC9C36;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(96, 185, 226, 0.9), rgba(198, 208, 73, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx=".66" cy=".66" r=".96"><stop offset="0" stop-color="%23fff" stop-opacity=".3"/><stop offset="1" stop-color="%23fff" stop-opacity="0"/></radialGradient></defs><circle transform="translate(20,10)" r="6" fill="url(%23a)"/></svg>');
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .lead {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        /* Cards */
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .info-card .card-icon {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Important dates styling */
+        .date-item {
+            background: white;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .date-item:hover {
+            background: #fff5f5;
+            transform: translateX(5px);
+        }
+
+        .date-highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Links */
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Contact section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            color: white;
+        }
+
+        .contact-section a {
+            color: #ecf0f1;
+            font-weight: 500;
+        }
+
+        .contact-section a:hover {
+            color: white;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .lead {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-mortarboard"></i> Meet-EU 2025
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#description">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#information">Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dates">Dates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#materials">Materials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container text-center">
+            <h1><i class="bi bi-cpu"></i> Drug specificity for SLC transporters</h1>
+            <p class="lead">An international collaborative course organised by six European universities within the <a href="https://4euplus.eu/4EU-1.html">4EU+ alliance</a></p>
+            <div class="mt-4">
+                <a href="#description" class="btn btn-light btn-lg me-3">
+                    <i class="bi bi-arrow-down"></i> Discover
+                </a>
+                <a href="#contact" class="btn btn-outline-light btn-lg">
+                    <i class="bi bi-envelope"></i> Contact
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Description -->
+    <section id="description" class="section">
+        <div class="container">
+            <h2><i class="bi bi-book"></i> Course Description</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="lead">Meet-EU is an international team-based course organised by six 4EU+ member universities, namely Copenhagen, Heidelberg, Milan, Paris, Prague, Warsaw, as part of the 4EU+ joint educational offer during the academic year 2025-2026.  </p>
+                    <p>Meet-EU has been designed to promote interdisciplinary training through research and welcomes students from computer science, physics, mathematics, chemistry, biology and biotechnologies. Students address an ambitious and open research problem in group of 4-5. The course ends with an inverse symposium where students present their work in front of a jury of internationally recognised researchers and the researchers present in turn recent works from their labs.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="info-card text-center">
+                        <i class="bi bi-people-fill card-icon"></i>
+                        <h5>Coopetition</h5>
+                        <p>Work in teams within and across universities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- General Information -->
+    <section id="information" class="section">
+        <div class="container">
+            <h2><i class="bi bi-info-circle"></i> General Information</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="info-card text-center">
+                        <i class="bi bi-translate card-icon"></i>
+                        <h5>Language</h5>
+                        <p>English</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="info-card text-center">
+                        <i class="bi bi-clipboard-check card-icon"></i>
+                        <h5>Assessment</h5>
+                        <p>Strategy, Code, Engagement, Presentation, and Report</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="info-card text-center">
+                        <i class="bi bi-lightbulb card-icon"></i>
+                        <h5>Topic</h5>
+                        <p>Identify specific inhibitors for SLC6A20</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="info-card text-center">
+                        <i class="bi bi-chat-dots card-icon"></i>
+                        <h5>Communication</h5>
+                        <p>Discord & Github</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section id="dates" class="section">
+        <div class="container">
+            <h2><i class="bi bi-calendar-event"></i> Important Dates</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="date-item">
+                        <i class="bi bi-play-circle text-primary me-2"></i>
+                        The kick-off presentation for all teams will take place <span class="date-highlight">Friday 10.10.24; 10am</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="bi bi-presentation text-primary me-2"></i>
+                        Mid-term presentations will take place on <span class="date-highlight">Friday 13.12.24; 10am</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="bi bi-people text-primary me-2"></i>
+                        Get in touch with the paired team(s) before <span class="date-highlight">20.11.24</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="bi bi-share text-primary me-2"></i>
+                        Sharing results and data with paired team(s) shall happen on <span class="date-highlight">15.12.24</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="bi bi-github text-primary me-2"></i>
+                        Final results and reports will be deposited on Github repository no later than <span class="date-highlight">20.01.25</span>
+                    </div>
+                    <div class="date-item">
+                        <i class="bi bi-trophy text-primary me-2"></i>
+                        The one-day final workshop will take place on <span class="date-highlight">27.01.25</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials -->
+    <section id="materials" class="section">
+        <div class="container">
+            <h2><i class="bi bi-collection"></i> Materials & Resources</h2>
+            
+            <h3><i class="bi bi-journal-text"></i> Key References</h3>
+            <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-dot text-primary"></i> Auteur, A., et al. "Titre important du papier." <em>Journal Name</em> 45.3 (2023): 123-145.</li>
+                <li class="mb-2"><i class="bi bi-dot text-primary"></i> Auteur, B., et al. "Deuxième référence clé." <em>Nature Methods</em> 18.7 (2024): 456-470.</li>
+                <li class="mb-2"><i class="bi bi-dot text-primary"></i> Auteur, C., et al. "Troisième papier fondamental." <em>Science</em> 380.6645 (2023): 789-795.</li>
+            </ul>
+
+            <h3><i class="bi bi-link-45deg"></i> Useful Links</h3>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <a href="https://github.com/votre-org/tools" class="text-decoration-none">
+                        <div class="info-card">
+                            <i class="bi bi-github card-icon"></i>
+                            <h6>GitHub Repository</h6>
+                            <p class="text-muted small">Outils et code du cours</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="https://colab.research.google.com" class="text-decoration-none">
+                        <div class="info-card">
+                            <i class="bi bi-code-slash card-icon"></i>
+                            <h6>Google Colab</h6>
+                            <p class="text-muted small">Environnement de développement</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-section">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2><i class="bi bi-envelope"></i> Contact</h2>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-building"></i> Sorbonne Université</h5>
+                                <p class="mb-1">
+                                    <a href="mailto:votre.email@sorbonne-universite.fr">Dr. Votre Nom</a><br>
+                                    <a href="mailto:collegue@sorbonne-universite.fr">Dr. Nom Collègue</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h5><i class="bi bi-building"></i> Institution Partenaire</h5>
+                                <p class="mb-1">
+                                    <a href="mailto:contact@partenaire.edu">Dr. Contact Partenaire</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <i class="bi bi-geo-alt" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h5>Final Meeting</h5>
+                        <p>27.01.2025<br>Paris, France</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 100) {
+                scrollTop.style.display = 'block';
+            } else {
+                scrollTop.style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
